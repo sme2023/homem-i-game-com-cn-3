@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 - 稳定入口与页面说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf8f5;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      color: #3e3a36;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 3rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 780px;
+      width: 100%;
+    }
+
+    /* 主视觉 - 信息卡片区 */
+    .hero-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2.5rem;
+      transition: box-shadow 0.25s ease;
+      border: 1px solid #ebe7e0;
+    }
+
+    .hero-card:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #2c2825;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: #7b736b;
+      border-left: 3px solid #c9ad85;
+      padding-left: 1.2rem;
+      margin: 1rem 0 1.6rem 0;
+      background: #f6f3ee;
+      border-radius: 0 8px 8px 0;
+      padding: 0.9rem 1.2rem;
+    }
+
+    .hero-sub p {
+      margin: 0.3rem 0;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: #4d4742;
+      margin-top: 1rem;
+    }
+
+    .hero-desc a {
+      color: #7a5f3e;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #d6c7b6;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-desc a:hover {
+      color: #4b3928;
+      border-bottom-color: #7a5f3e;
+    }
+
+    /* 用途卡片 · 网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid #eae5de;
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .info-card .emoji-icon {
+      font-size: 1.8rem;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #2f2b27;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-card p {
+      font-size: 0.92rem;
+      color: #5f5851;
+      margin: 0.2rem 0;
+    }
+
+    .info-card .highlight {
+      background: #f4efe8;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 450;
+    }
+
+    /* 适合人群 — 引用框风格 */
+    .audience-block {
+      background: #f4f0ea;
+      border-radius: 18px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+      border-left: 4px solid #b39674;
+    }
+
+    .audience-block h2 {
+      font-size: 1.3rem;
+      font-weight: 550;
+      margin-bottom: 0.8rem;
+      color: #2c2825;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .audience-block ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+    }
+
+    .audience-block li {
+      position: relative;
+      padding-left: 1.2rem;
+      font-size: 0.95rem;
+      color: #4e4842;
+    }
+
+    .audience-block li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #9b846a;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    /* 自然链接段落 & 提示框 */
+    .link-note {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e3ddd4;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .link-note p {
+      margin-bottom: 0.8rem;
+      font-size: 0.98rem;
+    }
+
+    .link-note a {
+      color: #7a5f3e;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #d6c7b6;
+      transition: border-color 0.2s;
+    }
+
+    .link-note a:hover {
+      border-bottom-color: #7a5f3e;
+    }
+
+    .tip-box {
+      background: #f2ede6;
+      border-radius: 14px;
+      padding: 1rem 1.5rem;
+      border-left: 4px solid #c9ad85;
+      margin: 1.2rem 0 0.2rem;
+      font-size: 0.92rem;
+      color: #4f4841;
+    }
+
+    .tip-box strong {
+      color: #4b3a2c;
+      font-weight: 600;
+    }
+
+    /* FAQ 摘要 — 简约折叠感 */
+    .faq-summary {
+      margin-top: 1.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed #ddd6cc;
+    }
+
+    .faq-item {
+      margin-bottom: 0.7rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 550;
+      color: #3d3731;
+      margin-bottom: 0.2rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #625b54;
+      margin-left: 0.5rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid #e2dbd2;
+      margin: 2rem 0 1.2rem;
+      opacity: 0.4;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 1rem 2.5rem;
+      }
+
+      .hero-card {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .audience-block {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .link-note {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .audience-block ul {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9c948a;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e4ded6;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 主视觉 信息卡片 -->
+  <div class="hero-card">
+    <h1 class="hero-title">爱游戏 · 稳定入口</h1>
+    <div class="hero-sub">
+      <p>日常使用的页面，也需要一个安心的起点。</p>
+      <p>不绕路、不杂乱，打开就能找到想玩的。</p>
+    </div>
+    <div class="hero-desc">
+      <p>
+        如果你常去 <a href="https://homem-i-game.com.cn">爱游戏</a> 看看有什么新内容，
+        把链接放在浏览器书签栏或桌面快捷方式，会比每次搜索更省时间。
+        页面本身保持简洁，减少额外跳转，也适合在碎片时间里随手打开。
+      </p>
+    </div>
+  </div>
+
+  <!-- 用途卡片 x 2 + 2 -->
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="emoji-icon">🎮</div>
+      <h3>快速浏览</h3>
+      <p>首页聚合了最近更新和常驻分类，不用翻菜单也能找到感兴趣的部分。<span class="highlight">爱游戏</span> 把常用入口放在显眼位置。</p>
+    </div>
+    <div class="info-card">
+      <div class="emoji-icon">📌</div>
+      <h3>稳定访问</h3>
+      <p>采用轻量结构，打开速度快，不依赖额外插件。适合网络环境一般的场景，也能在老旧设备上流畅使用。</p>
+    </div>
+    <div class="info-card">
+      <div class="emoji-icon">🔍</div>
+      <h3>内容索引</h3>
+      <p>每个板块都有明确标题，想找特定主题时，滚动或搜索都比纯图片站点更直接。</p>
+    </div>
+    <div class="info-card">
+      <div class="emoji-icon">🔄</div>
+      <h3>日常刷新</h3>
+      <p>页面内容会随社区动态更新，不需要频繁手动检查。打开即是最新状态。</p>
+    </div>
+  </div>
+
+  <!-- 适合人群 引用块 -->
+  <div class="audience-block">
+    <h2>👥 这些朋友可能用得顺手</h2>
+    <ul>
+      <li>平时用手机或平板浏览，不想装额外应用</li>
+      <li>偶尔想看看有什么新游戏或活动</li>
+      <li>习惯把常用网页存为书签，而不是每次搜索</li>
+      <li>对页面加载速度和简洁度有要求</li>
+      <li>希望一个入口能涵盖多个兴趣方向</li>
+    </ul>
+  </div>
+
+  <!-- 自然链接段落 + 提示框 -->
+  <div class="link-note">
+    <p>
+      很多朋友把 <a href="https://homem-i-game.com.cn">爱游戏</a> 当作日常浏览的起点之一，
+      因为它结构清晰，不会在首页堆满跳转链接或弹窗。你可以在里面慢慢翻，也可以直奔熟悉的栏目。
+    </p>
+    <p>
+      如果你是第一次接触，不妨先花几分钟看看页面里有哪些分类。有些内容藏在二级页面，但主入口都在首页能找到。
+    </p>
+    <div class="tip-box">
+      <strong>🕊️ 小提示：</strong> 如果遇到页面加载缓慢，可以先检查网络连接，或者尝试换个时段再打开。
+      多数情况下刷新一次就能正常显示，无需反复点击。
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-summary">
+    <div class="faq-item">
+      <strong>❓ 是否需要注册才能浏览？</strong>
+      <p>大部分内容可以直接查看，部分互动功能可能需要登录账号，具体以页面提示为准。</p>
+    </div>
+    <div class="faq-item">
+      <strong>❓ 移动端访问效果如何？</strong>
+      <p>采用响应式设计，在手机和电脑上都能自适应宽度，阅读体验接近。</p>
+    </div>
+    <div class="faq-item">
+      <strong>❓ 链接失效或打不开怎么办？</strong>
+      <p>可以尝试退出重新进入，或稍后再试。如果长期无法访问，建议检查网络或域名状态。</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <footer>
+    <p>简洁 · 稳定 · 日常陪伴</p>
+  </footer>
+
+</div>
+</body>
+</html>
